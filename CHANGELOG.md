@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove task category from the compute engine.
 - BREAKING: compute task specific endpoints.
 - BREAKING: category related fields to create task.
+- BREAKING: asset values in compute task inputs/outputs.
 
 ## [0.32.0] 2022-10-03
 
