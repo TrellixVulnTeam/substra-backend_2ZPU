@@ -23,29 +23,6 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class _ComputeTaskCategory:
-    ValueType = typing.NewType("ValueType", builtins.int)
-    V: typing_extensions.TypeAlias = ValueType
-
-class _ComputeTaskCategoryEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_ComputeTaskCategory.ValueType], builtins.type):  # noqa: F821
-    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
-    TASK_UNKNOWN: _ComputeTaskCategory.ValueType  # 0
-    TASK_TRAIN: _ComputeTaskCategory.ValueType  # 1
-    TASK_AGGREGATE: _ComputeTaskCategory.ValueType  # 2
-    TASK_COMPOSITE: _ComputeTaskCategory.ValueType  # 3
-    TASK_TEST: _ComputeTaskCategory.ValueType  # 4
-    TASK_PREDICT: _ComputeTaskCategory.ValueType  # 5
-
-class ComputeTaskCategory(_ComputeTaskCategory, metaclass=_ComputeTaskCategoryEnumTypeWrapper): ...
-
-TASK_UNKNOWN: ComputeTaskCategory.ValueType  # 0
-TASK_TRAIN: ComputeTaskCategory.ValueType  # 1
-TASK_AGGREGATE: ComputeTaskCategory.ValueType  # 2
-TASK_COMPOSITE: ComputeTaskCategory.ValueType  # 3
-TASK_TEST: ComputeTaskCategory.ValueType  # 4
-TASK_PREDICT: ComputeTaskCategory.ValueType  # 5
-global___ComputeTaskCategory = ComputeTaskCategory
-
 class _ComputeTaskStatus:
     ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -210,7 +187,6 @@ class ComputeTask(google.protobuf.message.Message):
         def ClearField(self, field_name: typing_extensions.Literal["key", b"key", "value", b"value"]) -> None: ...
 
     KEY_FIELD_NUMBER: builtins.int
-    CATEGORY_FIELD_NUMBER: builtins.int
     OWNER_FIELD_NUMBER: builtins.int
     COMPUTE_PLAN_KEY_FIELD_NUMBER: builtins.int
     PARENT_TASK_KEYS_FIELD_NUMBER: builtins.int
@@ -224,7 +200,6 @@ class ComputeTask(google.protobuf.message.Message):
     OUTPUTS_FIELD_NUMBER: builtins.int
     ALGO_KEY_FIELD_NUMBER: builtins.int
     key: builtins.str
-    category: global___ComputeTaskCategory.ValueType
     owner: builtins.str
     compute_plan_key: builtins.str
     @property
@@ -249,7 +224,6 @@ class ComputeTask(google.protobuf.message.Message):
         self,
         *,
         key: builtins.str = ...,
-        category: global___ComputeTaskCategory.ValueType = ...,
         owner: builtins.str = ...,
         compute_plan_key: builtins.str = ...,
         parent_task_keys: collections.abc.Iterable[builtins.str] | None = ...,
@@ -264,7 +238,7 @@ class ComputeTask(google.protobuf.message.Message):
         algo_key: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["creation_date", b"creation_date", "logs_permission", b"logs_permission"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["algo_key", b"algo_key", "category", b"category", "compute_plan_key", b"compute_plan_key", "creation_date", b"creation_date", "inputs", b"inputs", "key", b"key", "logs_permission", b"logs_permission", "metadata", b"metadata", "outputs", b"outputs", "owner", b"owner", "parent_task_keys", b"parent_task_keys", "rank", b"rank", "status", b"status", "worker", b"worker"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["algo_key", b"algo_key", "compute_plan_key", b"compute_plan_key", "creation_date", b"creation_date", "inputs", b"inputs", "key", b"key", "logs_permission", b"logs_permission", "metadata", b"metadata", "outputs", b"outputs", "owner", b"owner", "parent_task_keys", b"parent_task_keys", "rank", b"rank", "status", b"status", "worker", b"worker"]) -> None: ...
 
 global___ComputeTask = ComputeTask
 
@@ -304,7 +278,6 @@ class NewComputeTask(google.protobuf.message.Message):
         def ClearField(self, field_name: typing_extensions.Literal["key", b"key", "value", b"value"]) -> None: ...
 
     KEY_FIELD_NUMBER: builtins.int
-    CATEGORY_FIELD_NUMBER: builtins.int
     ALGO_KEY_FIELD_NUMBER: builtins.int
     COMPUTE_PLAN_KEY_FIELD_NUMBER: builtins.int
     WORKER_FIELD_NUMBER: builtins.int
@@ -312,7 +285,6 @@ class NewComputeTask(google.protobuf.message.Message):
     INPUTS_FIELD_NUMBER: builtins.int
     OUTPUTS_FIELD_NUMBER: builtins.int
     key: builtins.str
-    category: global___ComputeTaskCategory.ValueType
     algo_key: builtins.str
     compute_plan_key: builtins.str
     worker: builtins.str
@@ -326,7 +298,6 @@ class NewComputeTask(google.protobuf.message.Message):
         self,
         *,
         key: builtins.str = ...,
-        category: global___ComputeTaskCategory.ValueType = ...,
         algo_key: builtins.str = ...,
         compute_plan_key: builtins.str = ...,
         worker: builtins.str = ...,
@@ -334,7 +305,7 @@ class NewComputeTask(google.protobuf.message.Message):
         inputs: collections.abc.Iterable[global___ComputeTaskInput] | None = ...,
         outputs: collections.abc.Mapping[builtins.str, global___NewComputeTaskOutput] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["algo_key", b"algo_key", "category", b"category", "compute_plan_key", b"compute_plan_key", "inputs", b"inputs", "key", b"key", "metadata", b"metadata", "outputs", b"outputs", "worker", b"worker"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["algo_key", b"algo_key", "compute_plan_key", b"compute_plan_key", "inputs", b"inputs", "key", b"key", "metadata", b"metadata", "outputs", b"outputs", "worker", b"worker"]) -> None: ...
 
 global___NewComputeTask = NewComputeTask
 
@@ -373,12 +344,10 @@ class TaskQueryFilter(google.protobuf.message.Message):
 
     WORKER_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
-    CATEGORY_FIELD_NUMBER: builtins.int
     COMPUTE_PLAN_KEY_FIELD_NUMBER: builtins.int
     ALGO_KEY_FIELD_NUMBER: builtins.int
     worker: builtins.str
     status: global___ComputeTaskStatus.ValueType
-    category: global___ComputeTaskCategory.ValueType
     compute_plan_key: builtins.str
     algo_key: builtins.str
     def __init__(
@@ -386,11 +355,10 @@ class TaskQueryFilter(google.protobuf.message.Message):
         *,
         worker: builtins.str = ...,
         status: global___ComputeTaskStatus.ValueType = ...,
-        category: global___ComputeTaskCategory.ValueType = ...,
         compute_plan_key: builtins.str = ...,
         algo_key: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["algo_key", b"algo_key", "category", b"category", "compute_plan_key", b"compute_plan_key", "status", b"status", "worker", b"worker"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["algo_key", b"algo_key", "compute_plan_key", b"compute_plan_key", "status", b"status", "worker", b"worker"]) -> None: ...
 
 global___TaskQueryFilter = TaskQueryFilter
 
